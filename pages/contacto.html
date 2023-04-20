@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="frutillas, fresas, contacto, ubicación">
+    <meta name="description" content="contacto para hacer un pedido">
+    <!-- link de tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- link de mi bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- link de mi css -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="../img/fresas-logo.png">
+    <title>Contacto - Decofresas</title>
+</head>
+<body>
+    <!-- banner principal -->
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg" style="background-color: #FFDDEE;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../img/fresa-header.png" alt="logo de fresa" width="50" height="50" class="d-inline-block align-text-top">
+                    Decofresas
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/nosotros.html">nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/productos.html">productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/galeria.html">galeria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/contacto.html">contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- contenido principal -->
+    <main>
+        <div id= arriba class="mensaje-container">
+            <div class="mensaje">
+                Hacemos únicos tus momentos especiales  
+            </div>
+        </div>
+        <div class="titulos">
+            <h1>
+                Contacto
+            </h1>
+        </div>
+        <div class="container text-center">
+            <h2>Ubicación</h2>
+            <div class="row contacto">
+                <div class="col">
+                    <p>Microcentro, CABA.</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13136.54133420984!2d-58.3739421!3d-34.6007392!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd3613f716c54df68!2sDecofresas!5e0!3m2!1ses-419!2sar!4v1674004798218!5m2!1ses-419!2sar" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+              </div>
+              <div class="col">
+                    <h2>Horario</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Día</th>
+                                <th>Horario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Lunes a Viernes</td>
+                                <td>9:00 - 17:00</td>
+                            </tr>
+                            <tr>
+                                <td>Sábados y       Domingos</td>
+                                <td>Cerrado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="https://wa.me/5491130516222" target="_blank">
+                        <h3 class="botom-contacto">Comunícate con nosotros</h3>
+                    </a>
+                    <a href="https://www.instagram.com/decofresas.arg/" target="_blank">
+                        <h3 class="botom-instagram">Visita nuestro Instagram</h3>
+                    </a>
+              </div>
+            </div>
+        </div>
+        <div class="container text-center segundo">
+            <h2>Trabaja con nosotros</h2>
+            <p>Si te interesa formar parte de nuestro equipo, empezá por postularte aquí y adjunta tu CV.</p>
+            <div>  
+            <div class="row trabajo">
+                <div class="col">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nombre y Apellido</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre y Apellido">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="correo@dominio.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Adjunta tu CV</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                            <input type="submit">
+                            <input type="reset">
+                        </div>
+                    </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- pie de pagina -->
+    <footer>
+        <div class="whatsapp">
+            <a href="https://wa.me/5491130516222" target="_blank"><img src="../img/wp-logo.png" alt="logo de whatsapp"></a>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <p>Síguenos en nuestras redes sociales:</p>
+            </div>
+            <div class="col-md-4">
+              <a href="https://www.facebook.com/Decofresas.arg/" target="_blank"><img class="logoFB" src="../img/facebook-logo.png" alt="Logo de Facebook"></a>
+            </div>
+            <div class="col-md-4">
+              <a href="https://www.instagram.com/decofresas.arg/" target="_blank"><img class="logoIG" src="../img/instagram-logo.png" alt="Logo de Instagram"></a>
+            </div>
+          </div>
+          <ul class="menu-footer">
+            <li><a href="../index.html">home</a>
+            </li>
+            <li><a href="../pages/nosotros.html">nosotros</a>
+            </li>
+            <li><a href="../pages/productos.html">productos</a>
+            </li>
+            <li><a href="../pages/galeria.html">galeria</a>
+            </li>
+            <li><a href="../pages/contacto.html">contacto</a>
+            </li>
+        </ul>
+        </div>
+    </footer>
+    <!-- link de mi js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</html>

@@ -1,51 +1,66 @@
 // Aca escribo mi JS
 
-// funcion que calcula el total a pagar
+// Crear la clase combo
+class Combo {
+  constructor(numero, nombre, precio) {
+    this.numero = numero;
+    this.nombre = nombre;
+    this.precio = precio;
+  }
+}
+
+// Crear los combos con sus atributos
+const combos = [
+  new Combo(1, "Box London", 4700),
+  new Combo(2, "Box Grecia", 8800),
+  new Combo(3, "Box Venecia", 13700)
+];
+
+// Funcion para calcular el total de la combra con las variables nombre del combo y cantidad aca utilizo el metodo find para conseguir el combo seleccionado
 function calcularTotal(combo, cantidad) {
+  let nombreCombo;
+  let precioCombo;
 
-        let precioCombo;
+  const comboSeleccionado = combos.find(c => c.nombre.toLowerCase() === combo.toLowerCase());
+  if (comboSeleccionado) {
+    nombreCombo = comboSeleccionado.nombre;
+    precioCombo = comboSeleccionado.precio;
+  } else {
+    return "";
+  }
 
-        switch(combo) {
-          case 1:
-            precioCombo = 4700;
-            break;
-          case 2:
-            precioCombo = 8800;
-            break;
-          case 3:
-            precioCombo = 13700;
-            break;
-          default:
-            return 0;
-        }
-        return precioCombo * cantidad;
-      }
+  return nombreCombo + " - $" + precioCombo * cantidad;
+}
 
+// Simulador de compra al solicitar al usuario ingresar un nombre de combo
 alert("¡Gracias por elegirnos!");
 
-let comboValido = false; 
+let comboValido = false;
 let combo;
 
 while (!comboValido) {
-  combo = parseInt(prompt("Por favor, indica el numero del combo que quieres escoger 1 al 3"));
-  
-  if (combo >= 1 && combo <= 3) {
+  combo = prompt("Por favor, indica el nombre del combo que quieres escoger: Box London, Box Grecia o Box Venecia");
+
+  if (combos.some(c => c.nombre.toLowerCase() === combo.toLowerCase())) {
     comboValido = true;
   } else {
-    alert("El número del combo ingresado no existe. Por favor, intente con un numero de combo descrito en pantalla.");
+    alert("El nombre del combo ingresado no existe. Por favor, intente con un nombre de combo descrito en pantalla.");
   }
 }
 
 console.log("El combo escogido es " + combo);
 
+//Solicitar al usuario la cantidad a comprar
 let cantidad = parseInt(prompt("Por favor, ingrese la cantidad que desea comprar"));
 
 console.log("Ha ingresado el combo " + combo + " y desea comprar " + cantidad + " unidades.");
-      
+
 let totalPagar = calcularTotal(combo, cantidad);
-      
-if (totalPagar > 0) {
-alert("El precio total de su compra es $" + totalPagar);
+
+if (totalPagar !== "") {
+  alert("El precio total de su compra es " + totalPagar);
 } else {
-        alert("Ha ocurrido un error al calcular el precio total. Por favor, intente de nuevo.");
-      }
+  alert("Ha ocurrido un error al calcular el precio total. Por favor, intente de nuevo.");
+}
+
+

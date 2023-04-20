@@ -1,0 +1,42 @@
+/*paleta de colores*/
+$rosa-claro:#FFDDEE; 
+$verde-manzana:#78BF45; 
+$rosa-fucsia:#EC4E6F; 
+$verde-oscuro:#005801; 
+$blanco: white; 
+
+/* tamaño de pantalla*/
+$mobile-s:320px; 
+$tablet:600px;
+$pc:1024px;
+
+/*fuente*/
+$fuente-titulos: 'Pacifico', cursive; 
+$fuente-texto: "Montserrat", sans-serif; 
+
+/* tamaño de fuente*/
+$size-prin: 32px; 
+$size-menu:16px; 
+
+$h1-mobile: 24px;
+$h1-tablet: 32px;
+$h1-pc: 32px;
+$h2-mobile:24px;
+$h2-tablet:32px; 
+$h2-pc:32px;
+
+/*mixin*/
+@mixin flex-center-column {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+/*extend*/
+
+.botones{
+    font-size: 30px; /* tamaño de letra */
+    padding: 10px; /* margen interior */
+    color: $blanco; /* color de letra */
+    box-shadow: 0 0 15px black; /* sombra */
+    margin-top: 20px;
+}

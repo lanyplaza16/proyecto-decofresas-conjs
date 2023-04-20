@@ -1,0 +1,14 @@
+{
+  "name": "proyecto-decofresas-master-lany",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --inlcuide-path scss/styles.scss css/styles.css",
+    "watch-css": "nodemon -e scss -x \"nmp run build-css\""
+
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,379 @@
+/* reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* comienzo de estilos generales */
+
+/* comienzo de estilos generales de body */
+/*mobile first */
+body {
+    background-image: linear-gradient(to top, rgb(230, 221, 221), white); /* fondo de todas las paginas gradiente lineal*/
+    font-family: 'Montserrat', sans-serif; /* fuente general */
+    display: flex; /* propiedad flex */
+    flex-flow: column wrap; /* todas las cajas en columna */
+}
+/* fin de estilos generales de body */
+
+/* comienzo de estilos generales de header */
+/* mobile first */
+.navbar-brand {
+    font-family: 'Pacifico', cursive; /* fuente del titulo*/
+    font-size: 32px; /* tamaño del titulo */
+    color: #78BF45; /* color del titulo */
+}
+.nav-link {
+    text-transform: uppercase;/* menu en mayuscula */
+    color: #005801; /* color letras del menu */
+    font-size: 16px; /* tamaño de fuente del menu */
+}
+/* mq para laptop */
+@media screen and (min-width:1024px) {
+    .navbar-brand:hover {
+        color: #78BF45;
+    }
+    .d-inline-block.align-text-top:hover {
+        transform: rotate(40deg);
+    }
+    .d-inline-block.align-text-top {
+        transition: all .3s;
+    }
+    .nav-item:hover {
+        transform: scale(1.2);
+    }
+    .nav-item {
+        transition: all .3s;
+    }
+} 
+/*  fin de estilos generales de header */
+
+/* comienzo de estilos generales de main */
+/*mobile first */
+main {
+    display: flex; /* propiedad flex */
+    flex-flow: column wrap; /* cajas en columnas y doble linea */
+    justify-content: center; /* cajas centradas arriba */
+    margin-top: 80px; /* inicio del main para que no lo tape el header */
+    width: 100%; /* ancho del main */
+}
+.mensaje-container {
+    overflow: hidden; /* oculta los elementos que se salen del contenedor */
+    background-color: white; /* fondo de mensaje */
+    border-bottom: solid 2px #FFDDEE; /* linea de borde del mensaje */
+}
+.mensaje {
+    color: #005801; /*color de letras de la cinta de mensaje */
+    font-size: 16px; /* tamaño de fuente de la cinta de mensaje */
+    text-align: right; /* alineacion del texto */
+    white-space: nowrap;
+    animation: cinta-mensaje 8s linear infinite; /* animación de 15 segundos, lineal y un número infinito de repeticiones */
+}
+   @keyframes cinta-mensaje {
+    0% {
+      transform: translateX(0%); /* posición inicial del mensaje, fuera de la pantalla */
+    }
+    100% {
+      transform: translateX(-100%); /* posición final del mensaje, fuera de la pantalla */
+    }
+}
+main .titulos h1 {
+    font-family: 'Pacifico', cursive; /* fuente del titulo*/
+    font-size: 24px; /* tamaño del titulo */
+    color: #78BF45; /* color del titulo */
+    margin: 10px;
+    text-align: center;
+}
+main h3 {
+    font-family: 'Pacifico', cursive; /* fuente del titulo*/
+    font-size: 24px; /* tamaño del titulo */
+    color: #78BF45; /* color del titulo */
+    margin: 10px;
+    text-align: center;
+}
+/* mq para tablet */
+@media screen and (min-width:600px) {
+    .mensaje {
+        animation: cinta-mensaje 16s linear infinite; /* animación de 16 segundos, lineal y un número infinito de repeticiones */
+    }
+    main .titulos h1 {
+        font-size: 32px; /* tamaño del titulo */
+    }
+}
+/* mq para laptop */
+@media screen and (min-width:1024px) {
+    .mensaje {
+        font-size: 20px; /* tamaño de fuente de la cinta de mensaje */
+        animation: cinta-mensaje 24s linear infinite; /* animación de 24 segundos, lineal y un número infinito de repeticiones */
+    }
+    main .titulos h1 {
+        font-size: 32px; /* tamaño del titulo */
+    }
+} 
+/* fin de estilos generales de main */
+
+/* comienzo de estilos generales de footer */
+/* mobile firts */
+.whatsapp {
+    position: fixed; /* fija boton de ws */
+    bottom: 100px; /* fija botom de ws abajo */
+    right: 20px; /* fija botom de ws a la derecha */
+    z-index: 9999; /* deja el botom al frente */
+ }
+ .whatsapp img {
+    width: 45px; /*ancho boton de ws */
+    height: 45px; /*alto boton de ws */
+ }
+footer .container {
+    padding: 10px;
+
+}
+.menu-footer {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}  
+.menu-footer li {
+    display: inline-block;
+    margin-right: 20px;
+}
+.menu-footer li:last-child {
+    margin-right: 0;
+}
+.menu-footer li a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #005801;
+}  
+.logoFB {
+    width: 45px;
+    height: 45px;
+}
+.logoIG {
+    width: 45px;
+    height: 45px;
+    padding: 2px;
+}
+/* mq para laptop */
+@media screen and (min-width:1024px) {
+    .container {
+        font-size: 24px;
+    }
+    .whatsapp img {
+        width: 60px; /*ancho boton de ws */
+        height: 60px; /*alto boton de ws */
+    }
+    .whatsapp img:hover {
+        width: 80px;
+        height: 80px;
+        transform: scale(1.1);
+    }
+    .logoFB:hover {
+        width: 60px;
+        height: 60px;
+        transform: scale(1.1);
+    }
+    .logoFB {
+        transition: all .3s;
+    }
+    .logoIG:hover {
+        width: 60px;
+        height: 60px;
+        transform: scale(1.1);
+    }
+    .logoIG {
+        transition: all .3s;
+    }
+    .menu-footer li a:hover {
+        background-color: #EC4E6F;
+        color: #005801; 
+    } 
+}
+/* fin de estilos generales de footer */
+/* fin de estilos generales */
+
+/* comienzo de estilos de home*/
+/* mobile firts*/
+.seccion-dos {
+    display: flex; /* propiedad flex */
+    align-items: center; /* alineación vertical */
+    justify-content: center; /* alienación horizontal */
+    height: 20vh; /* alto de la seccion con respecto al tamaño de la pantalla */
+    background-color: #EC4E6F; /* fondo de footer */
+}
+.seccion-dos p {
+    font-size: 16px; /* tamaño letra */
+}
+/* mq para tablet */
+@media screen and (min-width:600px) {
+    .seccion-dos p {
+        font-size: 22px;
+    }
+}
+/* mq para laptop */
+@media screen and (min-width:1024px) {
+    .seccion-dos p {
+        font-size: 26px;
+    }
+}
+/* fin de estilos de home*/
+
+/* comienzo de estilos de nosotros */
+/* mobile firts*/
+main .nosotros-seccion1 {
+    width: 100%; /* ancho de la seccion */
+    padding: 5px; /* padding de la seccion*/
+    display: flex; /* propiedad flex predeterminado en fila */
+    flex-direction: column; 
+    justify-content: center;
+    gap: 20px; /* espacio entre elementos */
+    
+}
+main .nosotros-seccion1 .nosotros-seccion1__nosotros {
+    width: 100%;
+    display: flex; /* propiedad flex */
+    justify-content: center;
+    flex-direction: column;
+    text-align: center; /* alineacion de texto centrada */
+}
+main .nosotros-seccion1 .nosotros-seccion1__nosotros p {
+    font-size: 16px;
+}
+main .nosotros-seccion2 {
+    background-color: #FFDDEE; /* color de fonde de la seccion */
+    width: 100%;
+    display: flex; /* propiedad flex */
+    justify-content: center;
+    flex-direction: column;
+    text-align: center; /* alineacion de texto centrada */
+}
+main .nosotros-seccion2 .nosotros-seccion2__imgprov {
+    display: flex; /* prpiedad flex */
+    flex-direction: column;
+    align-items: center; /* alineacion vertical */
+    gap: 20px;
+    padding: 10px;
+}
+main .nosotros-seccion2 .nosotros-seccion2__imgprov .vacalin img {
+    width: 50%;
+    height: 80%;
+}
+main .nosotros-seccion2 .nosotros-seccion2__imgprov .valentino img {
+    width: 50%;
+    height: 80%; 
+}
+main .nosotros-seccion2 .nosotros-seccion2__imgprov .mercado img {
+    width: 50%;
+    height: 80%;
+}
+/* mq para tablet */
+@media screen and (min-width:600px) {
+    main .nosotros-seccion1 {
+        padding: 40px; /* padding de la seccion*/
+        flex-direction: row;
+        justify-content: space-between; /* distribucion horizontal */
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov .vacalin img {
+        width: 150px;
+        height: 100px;
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov .valentino img {
+        width: 150px;
+        height: 100px;
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov .mercado img {
+        width: 200px;
+        height: 100px;
+    }
+}
+/* mq para laptop */
+@media screen and (min-width:1024px) {
+    main .nosotros-seccion1 {
+        padding: 50px; /* padding de la seccion*/ 
+    }
+    main .nosotros-seccion1 .nosotros-seccion1__nosotros h3 {
+        font-size: 50px; /* tamaño del titulo */
+    }
+    main .nosotros-seccion2 h3 {
+        font-size: 50px; /* tamaño del titulo */
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov .vacalin img {
+        width: 200px;
+        height: 200px;
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov .valentino img {
+        width: 200px;
+        height: 200px; 
+    }
+    main .nosotros-seccion2 .nosotros-seccion2__imgprov .mercado img {
+        width: 350px;
+        height: 200px;
+    }
+}
+/* fin de estilos de nosotros */
+
+/* comienzo de estilos de productos */
+/* mobile firts*/
+div.col-sm-4 {
+    background-color: #FFDDEE;
+}
+.producto-item {
+    width: 100%
+}
+/* fin de estilos de productos */
+
+/* comienzo de estilos de galeria responsive*/
+/*mobile first*/
+main .galeria {
+    background-color: #78bf4596; /* fondo de la caja*/
+    margin: 1rem;
+    height: 70vh;
+    display: grid; /* propiedad grid*/
+    gap: 1rem; /* separacion entre cajas */
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 33%) /* declaracion de 3 filas */
+}
+main .galeria div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* fin de estilos de galeria */
+
+/* comienzo de estilos de contacto */
+/* mobile firts */
+.container.text-center {
+    background-color: #c8fca4;
+    padding: 10px;
+}
+.container.text-center h2 {
+    font-family: 'Pacifico', cursive; /* fuente del titulo*/
+    font-size: 30px; /* tamaño del titulo */
+    color: #005801; /* color del titulo */
+    margin-bottom: 10px; /* margen inferior */
+}
+.col a {
+    text-decoration: none; /* sacar decoracion del link */
+}
+.col a .botom-contacto{
+    font-size: 30px; /* tamaño de letra */
+    background-color: #005801; /* fondo de botom */
+    padding: 10px; /* margen interior */
+    color: white; /* color de letra */
+    box-shadow: 0 0 15px black; /* sombra */
+}
+.container.text-center.segundo {
+    background-color: #e0e0e0;
+    padding: 10px;
+}
+/* fin de estilos de contacto */
