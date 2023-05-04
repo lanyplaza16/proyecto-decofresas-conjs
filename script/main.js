@@ -67,16 +67,6 @@ function guardarDatos() {
 
   alert("Datos guardados correctamente");
 }
-
-window.onload = function() {
-  const nombreGuardado = localStorage.getItem("exampleFormControlInput1");
-  const telefonoGuardado = localStorage.getItem("exampleFormControlInput2");
-  const emailGuardado = localStorage.getItem("exampleFormControlInput3");
-
-  if (nombreGuardado && telefonoGuardado && emailGuardado) {
-    alert(`Bienvenido ${nombreGuardado}, su teléfono es ${telefonoGuardado} y su email es ${emailGuardado}`);
-  }
-}
 // Fin de JS para Contactos
 
 
