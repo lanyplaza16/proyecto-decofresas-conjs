@@ -330,6 +330,10 @@ div.col-sm-4 {
 .producto-item {
     width: 100%
 }
+
+.container #seccionCombo {
+    background-color: white;
+}
 /* fin de estilos de productos */
 
 /* comienzo de estilos de galeria responsive*/
