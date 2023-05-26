@@ -8,8 +8,7 @@ class Combo {
   }
 }
 
-// Funciones
-// Obtener combos de combos.json
+// funcion obtener combos de combos.json
 const traerCatalogo = async () => {
   const API = "../combos.json";
   const response = await fetch(API);
@@ -23,7 +22,7 @@ fetch("../combos.json")
     console.log(data);
   });
 
-// Generar cards para cada combo
+// funcion generar cards para cada combo
 const mostrarCatalogo = (catalogo) => {
   catalogo.forEach((c) => {
     const { nombre, img, descripcion, precio } = c;
@@ -40,7 +39,7 @@ const mostrarCatalogo = (catalogo) => {
   });
 };
 
-// Agregar al carrito
+// funcion agregar al carrito
 const agregarCarrito = (nombre) => {
   const comboCarrito = catalogo.find((c) => c.nombre === nombre);
   const toast = (nombre) => {
