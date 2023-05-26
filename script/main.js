@@ -1,73 +1,64 @@
-// Aca escribo mi JS
+// codigo JS
 
-// Comienzo de JS para Productos
-
-//Cree los combos en formato json
-
-const combos = [
-  {
-    "nombre": "Box London",
-    "descripcion": "8 frutillas decoradas a tu gusto acompañado por 1 botella de Chamdon 187ml, 12 Ferrero Rocher y flores de temporada.",
-    "precio": 4700
-  },
-  {
-    "nombre": "Box Grecia",
-    "descripcion": "8 frutillas decoradas a tu gusto acompañado por 1 botella de Chamdon 187ml y 1 chocolate.",
-    "precio": 8800
-  },
-  {
-    "nombre": "Box Venecia",
-    "descripcion": "8 frutillas decoradas a tu gusto acompañado por 6 rosas y 12 ferrero rocher.",
-    "precio": 13700
+class Combo {
+  constructor(nombre, precio, descripcion, img) {
+    this.nombre = nombre;
+    this.precio = precio;
+    this.descripcion = descripcion;
+    this.img = img;
   }
-];
-
-// Modificación del DOM
-
-const seccionCombo = document.getElementById("seccionCombo");
-
-const btnSeleccionar1 = document.getElementById("botonLondon");
-btnSeleccionar1.addEventListener("click", function() {
-  actualizarSeccionCombo(0);
-});
-
-const btnSeleccionar2 = document.getElementById("botonGrecia");
-btnSeleccionar2.addEventListener("click", function() {
-  actualizarSeccionCombo(1);
-});
-
-const btnSeleccionar3 = document.getElementById("botonVenecia");
-btnSeleccionar3.addEventListener("click", function() {
-  actualizarSeccionCombo(2);
-});
-
-function actualizarSeccionCombo(indiceCombo) {
-  const combo = combos[indiceCombo];
-  seccionCombo.innerHTML = `
-    <h2>${combo.nombre}</h2>
-    <p>${combo.descripcion}</p>
-    <p>Precio: $${combo.precio}</p>
-  `;
 }
 
-// Fin de JS para Productos
+// Funciones
+// Fetch al JSON (combos.json)
+const obtenerCombos = async () => {
+  const API = "../combos.json";
+  const response = await fetch(API);
+  const data = await response.json();
+  return data;
+};
 
-// Comienzo de JS para Contactos
+fetch("../combos.json")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+  });
 
-//Guardar datos
+const cargarCombos = (catalogo) => {
+  if (catalogo) {
+    catalogo.forEach((c) => {
+      const { nombre, img, descripcion, precio } = c;
+      let card = document.createElement("div");
+      card.setAttribute("class", "carta");
+      card.innerHTML = `
+        <img alt=${nombre} src='${img}'/>
+        <h4>${nombre}</h4>
+        <p>${descripcion}</p>
+        <h3>$${precio}</h3>
+        <button class="addbtn" id="${nombre}" ><a class='whiteLink'>Agregar al carrito</a></button>
+        `;
+        cardContainer.appendChild(card);
+      });
+    }
+  };
 
-function guardarDatos() {
-  const nombre = document.getElementById("exampleFormControlInput1").value;
-  const telefono = document.getElementById("exampleFormControlInput2").value;
-  const email = document.getElementById("exampleFormControlInput3").value;
+// fin de funciones
 
-  localStorage.setItem("exampleFormControlInput1", nombre);
-  localStorage.setItem("exampleFormControlInput2", telefono);
-  localStorage.setItem("exampleFormControlInput3", email);
+// Guardar el catálogo en el Storage
+// Utilizo la función asíncrona que hace el fetch: await obtenerCombos()
+localStorage.getItem("catalogo")
+  ? console.log("El catálogo ya está cargado en el storage")
+  : (async () => {
+      const data = await obtenerCombos();
+      localStorage.setItem("catalogo", JSON.stringify(data));
+    })();
 
-  alert("Datos guardados correctamente");
-}
-// Fin de JS para Contactos
+// Determino dónde se van a mostrar mi catálogo y carrito
+const cardContainer = document.getElementById("cardContainer");
+const cartContainer = document.getElementById("cartContainer");
 
+// Traigo el catálogo del storage
+let catalogo = JSON.parse(localStorage.getItem("catalogo"));
 
-
+// Cargo mis productos en la página
+cargarCombos(catalogo);

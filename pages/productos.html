@@ -60,36 +60,16 @@
             </h1>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="thumbnail"><img src="../img/box-london.jpg" class= "producto-item" alt="imagen descripcion de classic boxes">
-                        <div class="caption">
-                            <h3>Box London</h3>
-                            <p id="botonLondon"><a class="btn btn-primary" role="button">Detalles</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="thumbnail">
-                        <img src="../img/box-grecia.jpg" class= "producto-item" alt="imagen descripcion de box grecia">
-                        <div class="caption">
-                            <h3>Box Grecia</h3>                                
-                            <p id="botonGrecia"><a class="btn btn-primary" role="button">Detalles</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="thumbnail">
-                        <img src="../img/box-venecia.jpg" class= "producto-item" alt="imagen descripcion de box venecia">
-                        <div class="caption">
-                            <h3>Box Venecia</h3>
-                            <p id="botonVenecia"><a class="btn btn-primary" role="button">Detalles</a></p>
-                        </div>
-                    </div>
-                </div>
+            <div id='cardContainer' class='cardContainer'>
             </div>
-                <section id="seccionCombo">
-                </section>  
+            <br>
+            <button id="showCart">Mostrar Carrito</button>
+            <br>
+            <div id="cartContainer" class='cartContainer'>
+            </div>
+            <br>
+            <button id="checkOut">Confirmar compra</button>
+            <br>
         </div>
     </main>
     <!-- pie de pagina -->
@@ -123,6 +103,12 @@
         </ul>
         </div>
     </footer>
+    <!-- link luxon -->
+    <script src=" https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js "></script>
+    <!-- link sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- link toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- link de mi js -->
     <script src="../script/main.js"></script>
     <!-- link de mi js de boostrat -->

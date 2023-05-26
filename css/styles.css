@@ -44,6 +44,9 @@ body {
   color: #005801; /* color letras del menu */
   font-size: 16px; /* tamaño de fuente del menu */
 }
+.navbar-brand #carrito {
+  font-size: 16px; /* tamaño deseado del ícono del carrito */
+}
 
 /* mq para laptop */
 @media screen and (min-width: 1024px) {
@@ -363,14 +366,25 @@ main .nosotros-seccion2 .nosotros-seccion2__imgprov .mercado img {
 /* fin de estilos de nosotros */
 /* comienzo de estilos de productos */
 /* mobile firts*/
-div.col-sm-4 {
+
+.cardContainer {
+  display: flex;
+}
+
+.carta {
   background-color: #FFDDEE;
+  width: 500px;
+  height: 600px;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 20px;
+  text-align: center;
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.producto-item {
-  width: 100%;
-}
-
 /* fin de estilos de productos */
 /* comienzo de estilos de galeria responsive*/
 /*mobile first*/

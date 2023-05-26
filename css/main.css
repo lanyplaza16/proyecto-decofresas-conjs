@@ -29,6 +29,12 @@ body {
     color: #005801; /* color letras del menu */
     font-size: 16px; /* tamaño de fuente del menu */
 }
+.nav-link img {
+    width: 20px; /* Ancho deseado de la imagen del carrito */
+    height: 20px; /* Alto deseado de la imagen del carrito */
+
+}
+
 /* mq para laptop */
 @media screen and (min-width:1024px) {
     .navbar-brand:hover {
