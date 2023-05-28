@@ -20,7 +20,7 @@ const combos = [
 ]
 
 // traer los items del array que devuelve una promesa
-export const traerCombo = () => {
+export const getItems = () => {
     return new Promise((resolve, reject)=>{
         if(items.length > 0){
             setTimeout(()=> {
@@ -34,7 +34,7 @@ export const traerCombo = () => {
 
 // traer produtos de json con func asincronica
 const API = "../combos.json"
-export const traerCatalogo = async () => {
+export const getData = async () => {
     const response = await fetch(API);
     const data = await response.json();
     return data;

@@ -1,21 +1,20 @@
-
 [
-    {
-      "nombre": "Box London",
-      "precio": 4700,
-      "descripcion": "8 frutillas decoradas a tu gusto acompañado por 1 botella de Chamdon 187ml, 12 Ferrero Rocher y flores de temporada.",
-      "img": "/img/box-london.jpg"
-    },
-    {
-      "nombre": "Box Grecia",
-      "precio": 8800,
-      "descripcion": "8 frutillas decoradas a tu gusto acompañado por 1 botella de Chamdon 187ml y 1 chocolate.",
-      "img": "/img/box-grecia.jpg"
-    },
-    {
-      "nombre": "Box Venecia",
-      "precio": 13700,
-      "descripcion": "8 frutillas decoradas a tu gusto acompañado por 6 rosas y 12 ferrero rocher.",
-      "img": "/img/box-venecia.jpg"
-    }
+  {
+    "nombre": "Box London",
+    "precio": 4700,
+    "descripcion": "8 frutillas decoradas a tu gusto acompañado por 1 botella de Chamdon 187ml, 12 Ferrero Rocher y flores de temporada.",
+    "img": "/img/box-london.jpg"
+  },
+  {
+    "nombre": "Box Grecia",
+    "precio": 8800,
+    "descripcion": "8 frutillas decoradas a tu gusto acompañado por 1 botella de Chamdon 187ml y 1 chocolate.",
+    "img": "/img/box-grecia.jpg"
+  },
+  {
+    "nombre": "Box Venecia",
+    "precio": 13700,
+    "descripcion": "8 frutillas decoradas a tu gusto acompañado por 6 rosas y 12 ferrero rocher.",
+    "img": "/img/box-venecia.jpg"
+  }
 ]

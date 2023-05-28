@@ -9,39 +9,53 @@ class Combo {
 }
 
 // funcion obtener combos de combos.json
-const traerCatalogo = async () => {
-  const API = "../combos.json";
-  const response = await fetch(API);
+const buscarCombos = async () => {
+  const response = await fetch("../combos.json");
   const data = await response.json();
+  localStorage.setItem("catalogo", JSON.stringify(data));
+  console.log("El catálogo se ha cargado");
+  console.log(data);
+  verCombos(data);
   return data;
 };
 
-fetch("../combos.json")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-  });
+// funcion para mostrar combos
+const verCombos = (data) => {
+  const cardContainer = document.getElementById("cardContainer");
+  cardContainer.innerHTML = ""; // Limpiar el contenedor antes de agregar las tarjetas
 
-// funcion generar cards para cada combo
-const mostrarCatalogo = (catalogo) => {
-  catalogo.forEach((c) => {
+  data.forEach((c) => {
     const { nombre, img, descripcion, precio } = c;
     let card = document.createElement("div");
     card.setAttribute("class", "carta");
     card.innerHTML = `
-      <img alt=${nombre} src="${img}"/>
+      <img alt="${nombre}" src="${img}"/>
       <h3>${nombre}</h3>
       <p>${descripcion}</p>
       <h4>$${precio}</h4>
-      <button class="addbtn" id="${nombre}"><a class='whiteLink'>Agregar al carrito</a></button>
+      <button class="addbtn" data-nombre="${nombre}"><a class='whiteLink'>Agregar al carrito</a></button>
     `;
     cardContainer.appendChild(card);
   });
+
+  const agregarBoton = document.getElementsByClassName("addbtn");
+  for (let btn of agregarBoton) {
+    btn.addEventListener("click", () => agregarCarrito(btn.getAttribute("data-nombre")));
+  }
 };
 
-// funcion agregar al carrito
+// llamar a la función buscarCombos y verCombos
+buscarCombos().then((data) => {
+  verCombos(data);
+});
+
+// crear un array para el carrito
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// funcion para agregar al carrito
 const agregarCarrito = (nombre) => {
-  const comboCarrito = catalogo.find((c) => c.nombre === nombre);
+  const data = JSON.parse(localStorage.getItem("catalogo"));
+  const comboAgregado = data.find((i) => i.nombre === nombre);
   const toast = (nombre) => {
     Toastify({
       text: `${nombre} agregado con éxito`,
@@ -51,45 +65,43 @@ const agregarCarrito = (nombre) => {
       },
     }).showToast();
   };
-
-  // Array para el carrito
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-  let hayCarrito = carrito.some((combo) => combo.nombre === nombre);
-
-  if (hayCarrito) {
-    const itemIndex = carrito.findIndex((c) => c.nombre === comboCarrito.nombre);
-    const item4cart = carrito[itemIndex];
-    item4cart.cantidad++;
-    item4cart.total = item4cart.precio * item4cart.cantidad;
+  let estaCarrito = carrito.some((combo) => combo.nombre === comboAgregado.nombre);
+  if (estaCarrito) {
+    const comboIndex = carrito.findIndex((c) => c.nombre === comboAgregado.nombre);
+    const combo4cart = carrito[comboIndex];
+    combo4cart.cantidad++;
+    combo4cart.total = combo4cart.precio * combo4cart.cantidad;
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    toast(item4cart.nombre);
+    toast(combo4cart.nombre);
   } else {
-    const item4cart = {
-      ...comboCarrito,
+    const combo4cart = {
+      ...comboAgregado,
       cantidad: 1,
-      total: comboCarrito.precio,
+      total: comboAgregado.precio, // Actualizar el total del nuevo combo
     };
-    carrito.push(item4cart);
+    carrito.push(combo4cart); // Usar "carrito" en lugar de "cart"
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    toast(item4cart.nombre);
+    toast(combo4cart.nombre);
   }
 };
 
-const cartContainer = document.getElementById("cartContainer");
-
+// carrito vacio
 const carritoVacio = () => {
+  const cartContainer = document.getElementById("cartContainer");
   cartContainer.innerHTML = "";
   let sign = document.createElement("h2");
-  sign.innerHTML = "Su carrito está vacío";
+  sign.innerHTML = "No hay combos agregados";
   cartContainer.appendChild(sign);
 };
 
-const itemsCarrito = () => {
+//calcular el total
+const calcularTotal = () => carrito.reduce((acc, val) => acc + val.total, 0);
+
+//items del carrito
+const combosCarrito = () => {
+  const cartContainer = document.getElementById("cartContainer");
   cartContainer.innerHTML = "";
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  
-  // Crear tabla
+  let totalCompra = calcularTotal();
   let table = document.createElement("table");
   table.innerHTML = `
     <tr>
@@ -99,67 +111,85 @@ const itemsCarrito = () => {
       <th>Eliminar</th>
     </tr>
   `;
-  
-  // Agregar filas a la tabla con los elementos del carrito
-  carrito.forEach((p, index) => {
-    const { nombre, cantidad, total } = p;
-    
-    let row = document.createElement("tr");
-    row.innerHTML = `
+  carrito.forEach((c, index) => {
+    const { nombre, cantidad, total } = c;
+    let filaCarrito = document.createElement("tr");
+    filaCarrito.innerHTML = `
       <td>${nombre}</td>
       <td>${cantidad}</td>
       <td>$${total}</td>
       <td><button class="deletebtn" data-index="${index}">Eliminar</button></td>
     `;
-    
-    table.appendChild(row);
+    table.appendChild(filaCarrito);
   });
   
+  let totalElement = document.createElement("tr");
+  totalElement.innerHTML = `Total de la compra: $${totalCompra}`;
+  table.appendChild(totalElement);
   cartContainer.appendChild(table);
-  
-  // Agregar eventos a los botones de eliminar
-  const deleteButtons = document.getElementsByClassName("deletebtn");
-  for (let btn of deleteButtons) {
-    btn.addEventListener("click", (event) => eliminarItemCarrito(event.target.dataset.index));
+
+  const eliminarBotones = document.getElementsByClassName("deletebtn");
+  for (let btn of eliminarBotones) {
+    btn.addEventListener("click", (event) => eliminarComboCarrito(event.target.dataset.index));
   }
 };
 
-const eliminarItemCarrito = (index) => {
+// funcion para eliminar combo del carrito
+const eliminarComboCarrito = (index) => {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  
-  // Eliminar elemento del carrito por su índice
   carrito.splice(index, 1);
-  
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  
-  itemsCarrito();
+  combosCarrito();
 };
 
+// funcion para ver carrito
 const verCarrito = () => {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  carrito.length ? itemsCarrito() : carritoVacio();
+  carrito.length ? combosCarrito() : carritoVacio();
 };
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+// función para vaciar el carrito
+const vaciarCarrito = () => {
+  localStorage.removeItem("carrito");
+  carrito = [];
+  combosCarrito();
+  Swal.fire({
+    icon: "success",
+    title: "Carrito vaciado",
+    text: "El carrito ha sido vaciado correctamente.",
+  });
+};
 
+// evento para ver carrito
+const btnVer = document.getElementById("verCarrito");
+btnVer.addEventListener("click", () => verCarrito());
+
+// evento para actualizar el carrito
+const btnActualizarCarrito = document.getElementById("actualizarCarrito");
+btnActualizarCarrito.addEventListener("click", () => {
+  verCarrito();
+});
+
+// evento para vaciar el carrito
+const btnVaciarCarrito = document.getElementById("vaciarCarrito");
+btnVaciarCarrito.addEventListener("click", () => {
+  vaciarCarrito();
+});
+
+// mensaje de pedido
 const pedido = () => {
-  let message = "";
+  let mensaje = "";
   carrito.forEach((m) => {
     const { cantidad, nombre, total } = m;
-    message += `<p>(x${cantidad}) - ${nombre} - $${total}</p>`;
+    mensaje += `<p>(x${cantidad}) - ${nombre} - $${total}</p>`;
   });
-  return message;
+  return mensaje;
 };
 
-const total = () => {
-  return carrito.reduce((acc, val) => acc + val.total, 0);
-};
-
+// funcion confirmar pedido
 const confirmarPedido = () => {
   if (carrito.length) {
     const DateTime = luxon.DateTime;
     const fecha = DateTime.now().setLocale("es").toLocaleString();
-
     Swal.fire({
       title: "Confirmar compra",
       html: `
@@ -182,10 +212,8 @@ const confirmarPedido = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const telefono = result.value;
-
-        // Mandar mensaje de agradecimiento
-        const mensaje = `Gracias por tu compra. Pronto serás contactado al número de teléfono ${telefono}.`;
-        mostrarMensajeAgradecimiento(mensaje);
+        const mensajeConf = `Gracias por tu compra. Pronto serás contactado al número de teléfono ${telefono}.`;
+        mostrarMensajeAgradecimiento(mensajeConf);
       }
     });
   } else {
@@ -197,41 +225,14 @@ const confirmarPedido = () => {
   }
 };
 
-const mostrarMensajeAgradecimiento = (mensaje) => {
+const mostrarMensajeAgradecimiento = (mensajeConf) => {
   Swal.fire({
     icon: "success",
     title: "¡Gracias por tu compra!",
-    text: mensaje,
+    text: mensajeConf,
   });
 };
 
-
-// Guardar el catálogo en el storage
-if (!localStorage.getItem("catalogo")) {
-  traerCatalogo()
-    .then((data) => {
-      localStorage.setItem("catalogo", JSON.stringify(data));
-      catalogo = data;
-      mostrarCatalogo(catalogo);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-} else {
-  catalogo = JSON.parse(localStorage.getItem("catalogo"));
-  mostrarCatalogo(catalogo);
-}
-
-// Crear evento al botón agregar al carrito
-const botones = document.getElementsByClassName("addbtn");
-for (let btn of botones) {
-  btn.addEventListener("click", () => agregarCarrito(btn.id));
-}
-
-// Crear evento al botón ver carrito
-const btnVer = document.getElementById("verCarrito");
-btnVer.addEventListener("click", () => verCarrito());
-
-// Agregar evento al botón confirmar
+// evento para confirmar
 const confirmar = document.getElementById("confirmar");
 confirmar.addEventListener("click", () => confirmarPedido());
